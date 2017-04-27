@@ -236,16 +236,17 @@ Class Recibos_inscripciones_model extends CI_MODEL
 			            $this->db->join('deportes', 'deportes.id_deporte=inscripciones.id_deporte','left');
 			            $query = $this->db->get('inscripciones');
 			            $r = $query->row_array();
-
-			            # hijo
-			            $hijo = trim($r['ha1'].' '.$r['ha2']).', '.$r['hn'];
+						
+						# hijo
+			            $hijo = $this->limpiarCaracteresEspeciales(trim($r['ha1'].' '.$r['ha2'].' '.$r['hn']));
 						$hijo = substr($hijo, 0, 20);
+						$hijo = str_pad($hijo, 20, '#');/* 
 						if (strlen($hijo)<20) {
-							for ($i=strlen($hijo); $i <= 20; $i++) { 
+							for ($i=strlen($hijo); $i < 20; $i++) { 
 								# agregar espacios en blanco hasta que llege a 20
 								$hijo = $hijo.' ';
 							}
-						}
+						}*/
 
 			            # cuenta bancaria
 			            $ban1 = substr($r['cuenta_bancaria'], 4, 8);
@@ -302,14 +303,16 @@ Class Recibos_inscripciones_model extends CI_MODEL
 			            $r = $query->row_array();
 
 			            # hijo
-			            $hijo = trim($r['ha1'].' '.$r['ha2']).', '.$r['hn'];
+			            $hijo = $this->limpiarCaracteresEspeciales(trim($r['ha1'].' '.$r['ha2'].' '.$r['hn']));
 						$hijo = substr($hijo, 0, 20);
+						$hijo = str_pad($hijo, 20, '#');/* 
 						if (strlen($hijo)<20) {
-							for ($i=strlen($hijo); $i <= 20; $i++) { 
+							for ($i=strlen($hijo); $i < 20; $i++) { 
 								# agregar espacios en blanco hasta que llege a 20
 								$hijo = $hijo.' ';
 							}
-						}
+						}*/
+
 
 			            # cuenta bancaria
 			            $ban1 = substr($r['cuenta_bancaria'], 4, 8);
@@ -494,6 +497,13 @@ Class Recibos_inscripciones_model extends CI_MODEL
 	    {
 	      	return false;
 	    }
+	}
+
+	function limpiarCaracteresEspeciales($string )
+	{
+	 	$string = htmlentities($string);
+	 	$string = preg_replace('/\&(.)[^;]*;/', '\\1', $string);
+	 	return $string;
 	}
 
 }
