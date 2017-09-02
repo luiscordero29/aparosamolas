@@ -215,8 +215,8 @@ Class Recibos_inscripciones_model extends CI_MODEL
 		    	$cuaderno19->configuraPresentador("G50372903","112","APA COLEGIO MARIA ROSA MOLAS","2086","0014");
 
 		    	// Generamos un Ordenante
-		    	$ultOrdenante=$cuaderno19->agregaOrdenante("G50372903","001","APA COLEGIO MARIA ROSA MOLAS-ACTIVIDADES","2086","0014","80","3300258743");
-
+		    	$ultOrdenante=$cuaderno19->agregaOrdenante("G50372903","001","APA COLEGIO MARIA ROSA MOLAS-ACTIVIDADES","2085","5214","34","0331218539");
+ 
 			    $importe 	= $this->input->post('importe');
 			    if ($importe == '100') {
 			    	$data =
@@ -240,7 +240,7 @@ Class Recibos_inscripciones_model extends CI_MODEL
 						# hijo
 			            $hijo = $this->limpiarCaracteresEspeciales(trim($r['ha1'].' '.$r['ha2'].' '.$r['hn']));
 						$hijo = substr($hijo, 0, 20);
-						$hijo = str_pad($hijo, 20, '#');/* 
+						$hijo = str_pad($hijo, 20, ' ');/* 
 						if (strlen($hijo)<20) {
 							for ($i=strlen($hijo); $i < 20; $i++) { 
 								# agregar espacios en blanco hasta que llege a 20
@@ -305,7 +305,7 @@ Class Recibos_inscripciones_model extends CI_MODEL
 			            # hijo
 			            $hijo = $this->limpiarCaracteresEspeciales(trim($r['ha1'].' '.$r['ha2'].' '.$r['hn']));
 						$hijo = substr($hijo, 0, 20);
-						$hijo = str_pad($hijo, 20, '#');/* 
+						$hijo = str_pad($hijo, 20, ' ');/* 
 						if (strlen($hijo)<20) {
 							for ($i=strlen($hijo); $i < 20; $i++) { 
 								# agregar espacios en blanco hasta que llege a 20
@@ -499,11 +499,29 @@ Class Recibos_inscripciones_model extends CI_MODEL
 	    }
 	}
 
-	function limpiarCaracteresEspeciales($string )
+	function limpiarCaracteresEspeciales($string)
 	{
-	 	$string = htmlentities($string);
-	 	$string = preg_replace('/\&(.)[^;]*;/', '\\1', $string);
-	 	return $string;
+		$utf8 = array(
+	        '/[áàâãªä]/u'   =>   'a',
+	        '/[ÁÀÂÃÄ]/u'    =>   'A',
+	        '/[ÍÌÎÏ]/u'     =>   'I',
+	        '/[íìîï]/u'     =>   'i',
+	        '/[éèêë]/u'     =>   'e',
+	        '/[ÉÈÊË]/u'     =>   'E',
+	        '/[óòôõºö]/u'   =>   'o',
+	        '/[ÓÒÔÕÖ]/u'    =>   'O',
+	        '/[úùûü]/u'     =>   'u',
+	        '/[ÚÙÛÜ]/u'     =>   'U',
+	        '/ç/'           =>   'c',
+	        '/Ç/'           =>   'C',
+	        '/ñ/'           =>   'n',
+	        '/Ñ/'           =>   'N',
+	        '/–/'           =>   '-', // UTF-8 hyphen to "normal" hyphen
+	        '/[’‘‹›‚]/u'    =>   ' ', // Literally a single quote
+	        '/[“”«»„]/u'    =>   ' ', // Double quote
+	        '/ /'           =>   ' ', // nonbreaking space (equiv. to 0x160)
+	    );
+	    return preg_replace(array_keys($utf8), array_values($utf8), $string);
 	}
 
 }

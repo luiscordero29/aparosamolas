@@ -117,16 +117,7 @@ Class Login_model extends CI_MODEL
 		$this->db->insert('accesos', $data); 
 
 		# ENVIO DE CORREO
-		$config['protocol'] = 'smtp';
-		$config['smtp_host'] = 'mail.luiscordero29.com';
-		$config['smtp_user'] = 'info@luiscordero29.com';
-		$config['smtp_pass'] = 'cggQfKz2MwmTAJUKT6';
-		$config['smtp_port'] = '25';
-		$config['charset'] = 'iso-8859-1';
-		$config['mailtype'] = 'html';
-		$this->email->initialize($config);
-
-
+		$this->load->helper('email');
 		$text = '<h2>DATOS DE ACCESO</h2>';
 		$text .= '<p><b>USUARIO:</b> '.$dni.'</p>';
 		$text .= '<p><b>CLAVE:</b> '.$password.'</p>';
@@ -315,15 +306,6 @@ Class Login_model extends CI_MODEL
 
 			# ENVIO DE CORREO
 			$this->load->helper('email');
-			$config['protocol'] = 'smtp';
-			$config['smtp_host'] = 'mail.luiscordero29.com';
-			$config['smtp_user'] = 'info@luiscordero29.com';
-			$config['smtp_pass'] = 'cggQfKz2MwmTAJUKT6';
-			$config['smtp_port'] = '25';
-			$config['charset'] = 'iso-8859-1';
-			$config['mailtype'] = 'html';
-			$this->email->initialize($config);
-
 			// sent mail 
 			$text = '<h2>DATOS DE ACCESO</h2>';
 			$text .= '<p><b>USUARIO:</b> '.$row['usuario'].'</p>';
