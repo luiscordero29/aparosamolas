@@ -116,7 +116,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span>INSCRIPCIONES</span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo site_url('dashboard/familia'); ?>"><i class="fa fa-check"></i> Validar Familia Numerosa</a></li>
+            <li><a href="<?php echo site_url('dashboard/descuentos'); ?>"><i class="fa fa-check"></i> Procesar Descuentos</a></li>
             <li><a href="<?php echo site_url('dashboard/inscripciones'); ?>"><i class="fa fa-lock"></i> Cerrar Proceso</a></li>
             <li><a href="<?php echo site_url('desbloquear_inscripciones/index'); ?>"><i class="fa fa-unlock"></i> Permitir Modificar</a></li>
             <li><a href="<?php echo site_url('recibos_inscripciones/index'); ?>"><i class="fa fa fa-paper-plane"></i> Gestión de Recibos</a></li>

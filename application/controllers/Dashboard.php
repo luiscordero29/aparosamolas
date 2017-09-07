@@ -76,24 +76,24 @@ class Dashboard extends CI_Controller {
 
 	}
 
-	public function familia()
+	public function descuentos()
 	{
 		# Data
-		$data['meta'] = 'APA ROSA MOLAS | Validar Familia Numerosa';
-		$data['title'] = '<i class="fa fa-check"></i> Validar Familia Numerosa';
-		$data['subtitle'] = 'Validar Familia Numerosa';
+		$data['meta'] = 'APA ROSA MOLAS | Validar descuentos';
+		$data['title'] = '<i class="fa fa-check"></i> Validar descuentos';
+		$data['subtitle'] = 'Validar descuentos';
 		$data['breadcrumbs'] = 
 			array(
               	'<i class="fa fa-dashboard"></i> Home'			=> 'panel/index',
-              	'Cerrar Inpscripciones'							=> '',              	
+              	'Validar descuentos'							=> '',              	
             );
 	        
-	   	$this->Dashboard_model->familia();
+	   	$this->Dashboard_model->descuentos();
 		$data['alert']['success'] = 
 			array( 
 				'Procesado Exitosamente',				
 			);   
-		$this->load->view($this->controller.'/familia',$data);
+		$this->load->view($this->controller.'/descuentos',$data);
 
 	}
 

@@ -180,7 +180,7 @@ Class Dashboard_model extends CI_MODEL
 	    }
 	} 
 
-	function familia()
+	function descuentos()
 	{			    
 	    # FAMILIA NO
 	    $data = array(
@@ -234,6 +234,51 @@ Class Dashboard_model extends CI_MODEL
 				     WHERE (hijos.id_tutor = ".$tutor['id_tutor'].")
 				    ";
 				    $query = $this->db->query($sql);
+			    }
+	      	}
+	    }
+
+	    # LISTAR HIJOS
+	    $query = $this->db->get('hijos');
+
+	    if($query->num_rows() > 0)
+	    {
+	      	$hijos = $query->result_array();
+
+	      	foreach ($hijos as $hijo) {
+
+	      		$sql = 
+			    "SELECT id_deporte FROM inscripciones 
+			     WHERE (estatus = 'ACTIVO') AND (id_hijo = ".$hijo['id_hijo'].")
+			     GROUP BY id_deporte
+			    ";
+			    $query = $this->db->query($sql);
+			    if($query->num_rows() >= 2)
+			    {
+			      	# al menos 2 deportes por hijo 
+			      	# el sistema aplicará un 10% de descuento en la inscripcion
+			      	# y si tiene un descuento por familia se le acumula
+			    	$sql = 
+				    "SELECT id_inscripcion, id_deporte, descuento FROM inscripciones 
+				     WHERE (estatus = 'ACTIVO') AND (id_hijo = ".$hijo['id_hijo'].")
+				    ";
+				    $query_inscripciones = $this->db->query($sql);
+			      	$inscripciones = $query_inscripciones->result_array();
+			      	foreach ($inscripciones as $j) {
+			      		if ($j['descuento'] == 0) {
+			      			# aplicamos el 10
+			      			$descuento = 10;
+			      		}else{
+			      			# acumulamo el descuento
+			      			$descuento = $j['descuento'] + 10;
+			      		}
+			      		$sql = 
+						    "UPDATE inscripciones 
+						     SET descuento = '".$descuento."' 
+						     WHERE id_inscripcion = ".$j['id_inscripcion']."
+						    ";
+						$query = $this->db->query($sql);
+			      	}
 			    }
 	      	}
 	    }
