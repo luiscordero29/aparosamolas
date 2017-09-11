@@ -26,6 +26,11 @@ class Login extends CI_Controller {
     	$this->load->model('Login_model'); 	
   	}
 
+  	public function none()
+	{
+		$this->load->view('login/none');
+	}
+
 	public function index()
 	{
 		// rules
