@@ -40,6 +40,7 @@
                   <th>Correo</th>
                   <th>Nombres</th>
                   <th>Apellidos</th>
+                  <th>Familia Numerosa</th>
                   <th>Activo</th>
                   <th>Acciones</th>
                 </tr>
@@ -54,6 +55,7 @@
                   <td><?php echo $r['correo']; ?></td>
                   <td><?php echo $r['nombres']; ?></td>
                   <td><?php echo $r['apellidos']; ?></td>
+                  <td><?php echo $r['familia']; ?></td>
                   <td><?php echo $r['activo']; ?></td>
                   <td>
                     <?php if($this->session->userdata('id_usuario')<>$r['id_usuario']){ ?>

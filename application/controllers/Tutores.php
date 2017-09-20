@@ -137,6 +137,7 @@ class Tutores extends CI_Controller {
 		$this->form_validation->set_rules('correo', 'E-mail', 'trim|valid_email');				
 
 		// Tutor
+		$this->form_validation->set_rules('familia', 'Familia Numerosa', 'required');
 		$this->form_validation->set_rules('dni', 'DNI', 'trim|required|callback_dni_check|callback_vdni');
 		$this->form_validation->set_rules('apellidos', 'Apellidos', 'trim|required');
 		$this->form_validation->set_rules('nombres', 'Nombres', 'trim|required');

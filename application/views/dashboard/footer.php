@@ -109,15 +109,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   $('#reservation').daterangepicker();
   function ajax_valor(){
     var id = $('select#id_deporte').val();
-    $.ajax({
+    var ajaxurl = '<?php echo site_url('inscripciones/valor'); ?>' + '/' + id;
+    $.get( ajaxurl, function( data ) {
+      $( "#valor" ).html( data );
+    });
+    /*$.ajax({
       type:'POST',
-      url: '<?php echo site_url('inscripciones/valor'); ?>',
+      url: '<?php echo site_url('inscripciones/valor'); ?>' + '/' + id,
       data: 'id_deporte='+id,
       success: 
         function(resp){
           $('#valor').html(resp);        
         }
-    });
+    });*/
   } 
   <?php endif; ?>
   $( "#importe50" ).click(function() {

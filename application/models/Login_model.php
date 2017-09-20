@@ -312,7 +312,7 @@ Class Login_model extends CI_MODEL
 			$text .= '<p><b>CLAVE:</b> '.$pass.'</p>';
 
 			$this->email->to($email_principal);
-			$this->email->bcc('miguel@webactual.com ');
+			$this->email->bcc('miguel@webactual.com');
 			$this->email->from('app@aparosamolas.com');
 			$this->email->subject('RESTAURAR USUARIO');
 			$this->email->message($text);

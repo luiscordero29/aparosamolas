@@ -115,6 +115,7 @@ Class Tutores_model extends CI_MODEL
 
 	    $id_tutor = $this->input->post('id_tutor');
 
+	    $familia 				= $this->input->post('familia'); 
 	    $dni 					= $this->input->post('dni'); 
  		$apellidos 				= $this->input->post('apellidos'); 
  		$nombres 				= $this->input->post('nombres'); 
@@ -131,6 +132,7 @@ Class Tutores_model extends CI_MODEL
  		$cuenta_bancaria 		= $this->limpia_espacios($this->input->post('cuenta_bancaria')); 
 
  		$data = array(
+		   	'familia' 				=> $familia, 
 		   	'dni' 					=> $dni, 
 	 		'apellidos' 			=> $apellidos, 
 	 		'nombres' 				=> $nombres, 

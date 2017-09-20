@@ -97,40 +97,45 @@ Class Inscripciones_model extends CI_MODEL
 		// segun el tipo de deporte se realiza la inserssion del valor
 		$valor 				= $this->input->post('valor'); 
 		// consultar los hijos inscriptos
-		$descuento 			= '0'; 
-		$sql = 
+	   	$query = $this->db->get_where('hijos', array('id_hijo' => $id_hijo));
+	   	$hijo = $query->row_array();
+		
+		# Procesar Descuentos
+		$descuento = '0';
+	   	if ($hijo['descuento_1'] == 'SI') {
+	      	$descuento_1 = 10;
+	    }else{
+	      	$descuento_1 = 0;
+	    }
+	    if ($hijo['descuento_2'] == 'SI') {
+	      	$descuento_2 = 10;
+	    }else{
+	      	$descuento_2 = 0;
+	    }
+	    $sql = 
 	    "SELECT inscripciones.id_hijo FROM inscripciones 
-	     LEFT JOIN hijos ON hijos.id_hijo = inscripciones.id_hijo
-	     LEFT JOIN tutores ON tutores.id_tutor = hijos.id_tutor
-	     WHERE (inscripciones.estatus = 'ACTIVO') AND (tutores.id_tutor = ".$id_tutor.")
+	     WHERE (inscripciones.estatus = 'ACTIVO') AND (inscripciones.id_hijo = ".$id_hijo.")
 	     GROUP BY inscripciones.id_hijo
 	    ";
 	    $query = $this->db->query($sql);
 	    if($query->num_rows() >= 2)
 	    {
-	      	# al menos 3 hijos apuntados en al menos un deporte 
-	      	# el sistema aplicará un 10% de descuento en la cuota a 
-	      	# todos los hijos de ese tutor en todos los deportes 
-	      	$descuento 			= '10'; 
-
+	      	$descuento_2 = 10;
 	      	$sql = 
-		    "UPDATE inscripciones 
-		     LEFT JOIN hijos ON hijos.id_hijo = inscripciones.id_hijo
-		     LEFT JOIN tutores ON tutores.id_tutor = hijos.id_tutor
-		     SET inscripciones.descuento = '10' 
-		     WHERE (inscripciones.estatus = 'ACTIVO') AND (tutores.id_tutor = ".$id_tutor.")
-		    ";
-		    $query = $this->db->query($sql);
-
-		    #Actulizar los hijos a famlilia numerosa
-
-		    $sql = 
-		    "UPDATE hijos 
-		     SET hijos.familia = 'SI' 
-		     WHERE (hijos.id_tutor = ".$id_tutor.")
-		    ";
-		    $query = $this->db->query($sql);
+			    "UPDATE hijos 
+			     SET descuento_2 = 'SI'
+			     WHERE id_hijo = ".$id_hijo."
+			    ";
+			$this->db->query($sql);
 	    }
+	    $descuento = $descuento_1 + $descuento_2;
+	    # actualizar descuentos
+	    $sql = 
+		    "UPDATE inscripciones 
+		     SET inscripciones.descuento = ".$descuento." 
+		     WHERE (inscripciones.estatus = 'ACTIVO') AND (inscripciones.id_hijo = ".$id_hijo.")
+		    ";
+		$this->db->query($sql);
 		// precio del deporte
 		$this->db->select('precio' );
 	   	$query = $this->db->get_where('deportes', array('id_deporte' => $id_deporte));
@@ -205,6 +210,44 @@ Class Inscripciones_model extends CI_MODEL
 		$id_deporte 		= $this->input->post('id_deporte');
 		// segun el tipo de deporte se realiza la inserssion del valor
 		$valor 				= $this->input->post('valor'); 
+		# Procesar Descuentos
+		$descuento = '0';
+	   	if ($hijo['descuento_1'] == 'SI') {
+	      	$descuento_1 = 10;
+	    }else{
+	      	$descuento_1 = 0;
+	    }
+	    if ($hijo['descuento_2'] == 'SI') {
+	      	$descuento_2 = 10;
+	    }else{
+	      	$descuento_2 = 0;
+	    }
+	    $sql = 
+	    "SELECT inscripciones.id_hijo FROM inscripciones 
+	     WHERE (inscripciones.estatus = 'ACTIVO') AND (inscripciones.id_hijo = ".$id_hijo.")
+	     GROUP BY inscripciones.id_hijo
+	    ";
+	    $query = $this->db->query($sql);
+	    if($query->num_rows() >= 2)
+	    {
+	      	$descuento_2 = 10;
+	      	$sql = 
+			    "UPDATE hijos 
+			     SET descuento_2 = 'SI'
+			     WHERE id_hijo = ".$id_hijo."
+			    ";
+			$this->db->query($sql);
+	    }
+	    $descuento = $descuento_1 + $descuento_2;
+	    # actualizar descuentos
+	    $sql = 
+		    "UPDATE inscripciones 
+		     SET inscripciones.descuento = ".$descuento." 
+		     WHERE (inscripciones.estatus = 'ACTIVO') AND (inscripciones.id_hijo = ".$id_hijo.")
+		    ";
+		$this->db->query($sql);
+
+		/*
 		// consultar los hijos inscriptos
 		$descuento 			= '0'; 
 		$sql = 
@@ -241,6 +284,7 @@ Class Inscripciones_model extends CI_MODEL
 		    ";
 		    $query = $this->db->query($sql);
 	    }
+	    */
 		// precio del deporte
 		$this->db->select('precio' );
 	   	$query = $this->db->get_where('deportes', array('id_deporte' => $id_deporte));

@@ -328,11 +328,11 @@ class Inscripciones extends CI_Controller {
       	return $this->Inscripciones_model->inscripcion_check2();
   	}
 
-  	public function valor()
+  	public function valor($id_deporte)
     {
         		     	   
-	    $id_hijo = $this->input->post('id_hijo');
-	    $id_deporte = $this->input->post('id_deporte');
+	    #$id_hijo = $this->input->post('id_hijo');
+	    #$id_deporte = $this->input->post('id_deporte');
 	    $deporte  = $this->Inscripciones_model->read_deporte($id_deporte);
 	    #$info  = $this->Inscripciones_model->read_deporte_info($id_hijo,$id_deporte);
 	    if ($deporte['tipo'] == 'DORSAL') {
@@ -359,6 +359,11 @@ class Inscripciones extends CI_Controller {
 	            </div>
 		    	';
 	    	}*/
+	    }else{
+	    	echo '
+		    	<div class="form-group">
+	            </div>
+		    	';
 	    }
 	    /*if ($deporte['tipo'] == 'APUNTARSE') {
 	    	# INGRESO DE APUNTARSE

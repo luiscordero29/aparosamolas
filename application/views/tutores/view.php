@@ -43,6 +43,8 @@
               <dl class="dl-horizontal">
                 <dt>ID:</dt>
                 <dd><?php echo $row['id_tutor']; ?></dd>
+                <dt>Familia Numerosa:</dt>
+                <dd><?php echo $row['familia']; ?></dd>
                 <dt>DNI:</dt>
                 <dd><?php echo $row['dni']; ?></dd>
                 <dt>Nombres:</dt>
