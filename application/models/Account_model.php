@@ -52,7 +52,8 @@ Class Account_model extends CI_MODEL
 			$this->db->update('usuarios', $data); 	
 
 	    	$id_tutor = $this->input->post('id_tutor');
- 
+ 			$familia 				= $this->input->post('familia'); 
+ 			$carnet 				= $this->input->post('carnet'); 
 	 		$direccion 				= $this->input->post('direccion'); 
 	 		$id_poblacion 			= $this->input->post('id_poblacion'); 
 	 		$codigo_postal 			= $this->input->post('codigo_postal'); 
@@ -66,7 +67,9 @@ Class Account_model extends CI_MODEL
 	 		$cuenta_bancaria 		= $this->input->post('cuenta_bancaria'); 
 
 	 		$data = array(
-		 		'direccion' 			=> $direccion, 
+		 		'familia' 				=> $familia, 
+		   		'carnet' 				=> $carnet, 
+		   		'direccion' 			=> $direccion, 
 		 		'id_poblacion' 			=> $id_poblacion, 
 		 		'codigo_postal' 		=> $codigo_postal, 
 		 		'telefono_movil' 		=> $telefono_movil, 

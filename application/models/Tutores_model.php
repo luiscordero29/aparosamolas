@@ -116,6 +116,7 @@ Class Tutores_model extends CI_MODEL
 	    $id_tutor = $this->input->post('id_tutor');
 
 	    $familia 				= $this->input->post('familia'); 
+	    $carnet 				= $this->input->post('carnet'); 
 	    $dni 					= $this->input->post('dni'); 
  		$apellidos 				= $this->input->post('apellidos'); 
  		$nombres 				= $this->input->post('nombres'); 
@@ -133,6 +134,7 @@ Class Tutores_model extends CI_MODEL
 
  		$data = array(
 		   	'familia' 				=> $familia, 
+		   	'carnet' 				=> $carnet, 
 		   	'dni' 					=> $dni, 
 	 		'apellidos' 			=> $apellidos, 
 	 		'nombres' 				=> $nombres, 

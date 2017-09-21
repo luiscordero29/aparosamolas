@@ -43,14 +43,16 @@
               <dl class="dl-horizontal">
                 <dt>ID:</dt>
                 <dd><?php echo $row['id_tutor']; ?></dd>
-                <dt>Familia Numerosa:</dt>
-                <dd><?php echo $row['familia']; ?></dd>
                 <dt>DNI:</dt>
                 <dd><?php echo $row['dni']; ?></dd>
                 <dt>Nombres:</dt>
                 <dd><?php echo $row['nombres']; ?></dd>
                 <dt>Apellidos:</dt>
                 <dd><?php echo $row['apellidos']; ?></dd>
+                <dt>Familia Numerosa:</dt>
+                <dd><?php echo $row['familia']; ?></dd>
+                <dt>Nº carnet familia numerosa:</dt>
+                <dd><?php echo $row['carnet']; ?></dd>
                 <dt>Dirección:</dt>
                 <dd><?php echo $row['direccion']; ?></dd>
                 <dt>Población:</dt>

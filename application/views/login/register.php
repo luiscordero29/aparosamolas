@@ -59,6 +59,14 @@
         <input type="text" class="form-control" name="nombres" id="nombres" placeholder="Nombres"  autocomplete="off" required="" maxlength="120" value="<?php echo set_value('nombres'); ?>"/>
       </div>
       <div class="form-group has-feedback">
+        <select name="familia" id="familia" class="form-control" required>
+          <option value="">Es Familia Numerosa?</option>
+          <option value="SI" <?php if (set_value('familia')=='SI'): ?>selected<?php endif ?>>SI</option>
+          <option value="NO" <?php if (set_value('familia')=='NO'): ?>selected<?php endif ?>>NO</option>
+        </select>
+      </div>
+      <div id="carnet"></div>
+      <div class="form-group has-feedback">
         <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Dirección"  autocomplete="off" required=""  value="<?php echo set_value('direccion'); ?>"/>
       </div>
       <div class="form-group has-feedback">
@@ -196,6 +204,13 @@
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' // optional
     });
+  });
+  $("#familia").change(function(even) {
+    var familia = $(this).val();
+    var ajaxurl = '<?php echo site_url('login/carnet'); ?>' + '/' + familia;
+    $.get( ajaxurl, function( data ) {
+      $( "#carnet" ).html( data );
+    });    
   });
 </script>
 </body>

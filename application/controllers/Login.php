@@ -57,6 +57,11 @@ class Login extends CI_Controller {
 			);
 		$this->form_validation->set_rules('apellidos', 'Apellidos', 'trim|required');
 		$this->form_validation->set_rules('nombres', 'Nombres', 'trim|required');
+		$this->form_validation->set_rules('familia', 'Familia Numerosa', 'required');
+		$familia = $this->input->post('familia');
+		if ($familia == 'SI') {
+			$this->form_validation->set_rules('carnet', 'Nº carnet familia numerosa', 'required');
+		}
 		$this->form_validation->set_rules('direccion', 'Dirección', 'trim|required');
 		$this->form_validation->set_rules('id_poblacion', 'Población', 'trim|required');
 		$this->form_validation->set_rules('codigo_postal', 'Código postal', 'trim|required');
@@ -91,6 +96,23 @@ class Login extends CI_Controller {
 	        $this->load->view('login/message',$data);     
 		}
 	}
+
+	public function carnet($familia)
+    {
+	    if ($familia == 'SI') {
+	    	# INGRESO DE DORSAL
+	    	echo '
+		    	<div class="form-group has-feedback">
+	                <input type="text" name="carnet" class="form-control" id="carnet" placeholder="Nº carnet familia numerosa" required="" >
+	            </div>
+		    	';
+	    }else{
+	    	echo '
+		    	<div class="form-group has-feedback">
+	            </div>
+		    	';
+	    }
+    }
 
 	public function renovate()
 	{

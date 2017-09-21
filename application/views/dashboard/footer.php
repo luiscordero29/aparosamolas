@@ -163,6 +163,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   $("#checkAll").click(function(){
     $('input:checkbox').not(this).prop('checked', this.checked);
   });
+
+  $("#familia").change(function(even) {
+    var familia = $(this).val();
+    var ajaxurl = '<?php echo site_url('account/carnet'); ?>' + '/' + familia;
+    $.get( ajaxurl, function( data ) {
+      $( "#carnet" ).html( data );
+    });    
+  });
 </script>
 
                 

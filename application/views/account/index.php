@@ -34,6 +34,12 @@
                 <dt>Activo:</dt>
                 <dd><?php echo $row['activo']; ?></dd>
                 <?php }else{ ?>
+                <dt>Familia Numerosa:</dt>
+                <dd><?php echo $row['familia']; ?></dd>
+                <?php if ($row['familia']=='SI'): ?>
+                  <dt>Nº carnet familia numerosa:</dt>
+                  <dd><?php echo $row['carnet']; ?></dd>
+                <?php endif ?>
                 <dt>DNI:</dt>
                 <dd><?php echo $row['dni']; ?></dd>
                 <dt>Nombres:</dt>

@@ -46,6 +46,8 @@ Class Login_model extends CI_MODEL
 
  	public function register()
  	{
+ 		$familia 				= $this->input->post('familia'); 
+ 		$carnet 				= $this->input->post('carnet'); 
  		$dni 					= $this->input->post('dni'); 
  		$apellidos 				= $this->input->post('apellidos'); 
  		$nombres 				= $this->input->post('nombres'); 
@@ -76,6 +78,8 @@ Class Login_model extends CI_MODEL
  		} 
 
  		$data = array(
+		   	'familia' 				=> $familia, 
+		   	'carnet' 				=> $carnet, 
 		   	'dni' 					=> $dni, 
 	 		'apellidos' 			=> $apellidos, 
 	 		'nombres' 				=> $nombres, 

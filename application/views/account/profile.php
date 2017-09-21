@@ -64,6 +64,22 @@
                   <input disabled type="text" name="apellidos" class="form-control" id="apellidos" placeholder="Apellidos" autocomplete="off" maxlength="120" value="<?php echo $row['apellidos']; ?>" >
                 </div>
                 <div class="form-group">
+                  <label for="familia">Familia Numerosa</label>
+                  <select name="familia" id="familia" class="form-control" required>
+                    <option value="">SELECCIONE</option>
+                    <option value="SI" <?php if ($row['familia']=='SI'): ?>selected<?php endif ?>>SI</option>
+                    <option value="NO" <?php if ($row['familia']=='NO'): ?>selected<?php endif ?>>NO</option>
+                  </select>                  
+                </div> 
+                <div id="carnet">
+                  <?php if ($row['familia']=='SI'): ?>
+                    <div class="form-group">
+                      <label for="carnet">Nº carnet familia numerosa</label>
+                      <input type="text" name="carnet" class="form-control" id="carnet" placeholder="Nº carnet familia numerosa" required="" value="<?php echo $row['carnet']; ?>">
+                    </div>
+                  <?php endif ?>
+                </div>                
+                <div class="form-group">
                   <label for="direccion">Dirección</label>
                   <input type="text" name="direccion" class="form-control" id="direccion" placeholder="Dirección" autocomplete="off" required="" value="<?php echo $row['direccion']; ?>" >
                 </div>
