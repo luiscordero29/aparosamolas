@@ -1,0 +1,3 @@
+usuario: aparosamolas
+clave: Apa.2017
+el usuario del ftp es: aparosamolas@aparosamolas.com

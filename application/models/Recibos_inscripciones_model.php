@@ -1,4 +1,4 @@
-	<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 Class Recibos_inscripciones_model extends CI_MODEL
 {
 	public function __construct()
@@ -216,7 +216,7 @@ Class Recibos_inscripciones_model extends CI_MODEL
 
 		    	// Generamos un Ordenante
 		    	$ultOrdenante=$cuaderno19->agregaOrdenante("G50372903","001","APA COLEGIO MARIA ROSA MOLAS-ACTIVIDADES","2085","5214","34","0331218539");
- 
+
 			    $importe 	= $this->input->post('importe');
 			    if ($importe == '100') {
 			    	$data =
@@ -236,13 +236,13 @@ Class Recibos_inscripciones_model extends CI_MODEL
 			            $this->db->join('deportes', 'deportes.id_deporte=inscripciones.id_deporte','left');
 			            $query = $this->db->get('inscripciones');
 			            $r = $query->row_array();
-						
+
 						# hijo
 			            $hijo = $this->limpiarCaracteresEspeciales(trim($r['ha1'].' '.$r['ha2'].' '.$r['hn']));
 						$hijo = substr($hijo, 0, 20);
-						$hijo = str_pad($hijo, 20, ' ');/* 
+						$hijo = str_pad($hijo, 20, ' ');/*
 						if (strlen($hijo)<20) {
-							for ($i=strlen($hijo); $i < 20; $i++) { 
+							for ($i=strlen($hijo); $i < 20; $i++) {
 								# agregar espacios en blanco hasta que llege a 20
 								$hijo = $hijo.' ';
 							}
@@ -305,9 +305,9 @@ Class Recibos_inscripciones_model extends CI_MODEL
 			            # hijo
 			            $hijo = $this->limpiarCaracteresEspeciales(trim($r['ha1'].' '.$r['ha2'].' '.$r['hn']));
 						$hijo = substr($hijo, 0, 20);
-						$hijo = str_pad($hijo, 20, ' ');/* 
+						$hijo = str_pad($hijo, 20, ' ');/*
 						if (strlen($hijo)<20) {
-							for ($i=strlen($hijo); $i < 20; $i++) { 
+							for ($i=strlen($hijo); $i < 20; $i++) {
 								# agregar espacios en blanco hasta que llege a 20
 								$hijo = $hijo.' ';
 							}
